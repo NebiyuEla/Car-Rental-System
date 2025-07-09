@@ -1,91 +1,77 @@
 #include <iostream>
-#include <string>
 using namespace std;
-
-const int MAX_CARS = 5;
 
 struct Car {
     int id;
-    string model;
-    bool isRented;
+    string name;
+    bool rented;
 };
 
-void showCars(Car cars[], int size) {
-    cout << "\nAvailable Cars:\n";
-    for (int i = 0; i < size; i++) {
+void showCars(Car cars[], int n) {
+    cout << "\n--- Cars ---\n";
+    for (int i = 0; i < n; i++) {
         cout << "ID: " << cars[i].id
-             << " | Model: " << cars[i].model
-             << " | Status: " << (cars[i].isRented ? "Rented" : "Available") << endl;
+             << " | " << cars[i].name
+             << " | " << (cars[i].rented ? "Rented" : "Available") << endl;
     }
 }
 
-void rentCar(Car cars[], int size) {
+void rentCar(Car cars[], int n) {
     int id;
-    showCars(cars, size);
-    cout << "\nEnter car ID to rent: ";
+    cout << "Enter ID to rent: ";
     cin >> id;
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < n; i++) {
         if (cars[i].id == id) {
-            if (!cars[i].isRented) {
-                cars[i].isRented = true;
-                cout << "You have rented " << cars[i].model << ".\n";
+            if (!cars[i].rented) {
+                cars[i].rented = true;
+                cout << "Rented " << cars[i].name << "\n";
             } else {
-                cout << "Car already rented.\n";
+                cout << "Already rented.\n";
             }
             return;
         }
     }
-    cout << "Invalid car ID.\n";
+    cout << "Car not found.\n";
 }
 
-void returnCar(Car cars[], int size) {
+void returnCar(Car cars[], int n) {
     int id;
-    cout << "\nEnter car ID to return: ";
+    cout << "Enter ID to return: ";
     cin >> id;
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < n; i++) {
         if (cars[i].id == id) {
-            if (cars[i].isRented) {
-                cars[i].isRented = false;
-                cout << "You have returned " << cars[i].model << ".\n";
+            if (cars[i].rented) {
+                cars[i].rented = false;
+                cout << "Returned " << cars[i].name << "\n";
             } else {
-                cout << "Car was not rented.\n";
+                cout << "Not rented.\n";
             }
             return;
         }
     }
-    cout << "Invalid car ID.\n";
+    cout << "Car not found.\n";
 }
 
 int main() {
-    Car cars[MAX_CARS] = {
-        {1, "Toyota Corolla", false},
-        {2, "Honda Civic", false},
-        {3, "Ford Focus", false},
-        {4, "BMW 3 Series", false},
-        {5, "Tesla Model 3", false}
+    Car cars[5] = {
+        {1, "Toyota", false},
+        {2, "Honda", false},
+        {3, "Ford", false},
+        {4, "BMW", false},
+        {5, "Tesla", false}
     };
 
     int choice;
     do {
-        cout << "\n--- Car Rental System ---\n";
-        cout << "1. Show Cars\n";
-        cout << "2. Rent Car\n";
-        cout << "3. Return Car\n";
-        cout << "4. Exit\n";
-        cout << "Enter your choice: ";
+        cout << "\n1. Show Cars\n2. Rent Car\n3. Return Car\n4. Exit\nChoose: ";
         cin >> choice;
 
-        switch (choice) {
-            case 1: showCars(cars, MAX_CARS); break;
-            case 2: rentCar(cars, MAX_CARS); break;
-            case 3: returnCar(cars, MAX_CARS); break;
-            case 4: cout << "Thank you! Goodbye.\n"; break;
-            default: cout << "Invalid choice.\n";
-        }
+        if (choice == 1) showCars(cars, 5);
+        else if (choice == 2) rentCar(cars, 5);
+        else if (choice == 3) returnCar(cars, 5);
+        else if (choice == 4) cout << "Goodbye!\n";
+        else cout << "Invalid choice.\n";
     } while (choice != 4);
 
     return 0;
 }
-
