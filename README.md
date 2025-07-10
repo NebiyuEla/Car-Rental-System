@@ -8,7 +8,7 @@ statements, and functions.
 | Name               | ID             | GitHub Username |
 |--------------------|----------------|------------------|
 | Yeabsira Abrham    | RCD/0223/2017  | ye-ship-it       |
-| Thtna Adane        | RCD/0220/2017  | Thtna2421        |
+| Thtna Adane        | RCD/0220/2017  | -Thtna2421       |
 | Yohannes Mekonnen  | RCD/1657/2017  | John-moke        |
 | Nebyu Elyas        | RCD/0215/2017  | NebiyuEla        |
 | Kidus Dawit        | RCD/0197/2017  | Kidusdawit411    |
